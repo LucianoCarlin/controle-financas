@@ -11,6 +11,12 @@ export const GlobalStyle = createGlobalStyle`
     --shape: #ffffff;
     --white: #fff;
     --green: #33cc95;
+    --gray200:#E2E8F0;
+    --gray300: #CBD5E0;
+    --gray600: #4A5568;
+    --gray700: #2D3748;
+    --gray800: #1A202C;
+    --gray900: #171923;
   }
 
   * {
@@ -30,7 +36,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background: var(--background);
+    background: var(--gray600);
     -webkit-font-smoothing: antialiased;
   }
   
@@ -51,4 +57,25 @@ export const GlobalStyle = createGlobalStyle`
     opacity: 0.6;
     cursor: not-allowed;
   }
-`
+
+  .react-modal-overlay {
+    background-color: rgba(0,8,8,0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .react-modal-content{
+    width: 100%;
+    max-width: 576px;
+    background-color: var(--gray300);
+    padding: 3rem;
+    position: relative;
+    border-radius: 0.25rem;
+  }
+`;

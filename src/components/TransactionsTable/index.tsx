@@ -1,6 +1,9 @@
+import { useContext } from "react";
+import { TransactionsContext } from "../../context/TransactionsContext";
 import { Container } from "./styles";
 
-export function TransactionsTable () {
+export function TransactionsTable() {
+  const { transactions } = useContext(TransactionsContext);
   return (
     <Container>
       <table>
@@ -13,35 +16,24 @@ export function TransactionsTable () {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Desenvolvimento</td>
-            <td className="deposit">R$12.000,00</td>
-            <td>Desenvolvimento</td>
-            <td>20/09/2021</td>
-          </tr>
-
-          <tr>
-            <td>Aluguel</td>
-            <td className="withdraw">- R$1.000,00</td>
-            <td>Casa</td>
-            <td>20/09/2021</td>
-          </tr>
-
-          <tr>
-            <td>Desenvolvimento</td>
-            <td>R$12.000,00</td>
-            <td>Desenvolvimento</td>
-            <td>20/09/2021</td>
-          </tr>
-
-          <tr>
-            <td>Desenvolvimento</td>
-            <td>R$12.000,00</td>
-            <td>Desenvolvimento</td>
-            <td>20/09/2021</td>
-          </tr>
+          {transactions &&
+            transactions.map((reg) => (
+              <tr key={reg.id}>
+                <td>{reg.title}</td>
+                <td className={reg.type}>
+                  {Intl.NumberFormat("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  }).format(reg.amount)}
+                </td>
+                <td>{reg.category}</td>
+                <td>
+                  {Intl.DateTimeFormat("pt-BR").format(new Date(reg.createdAt))}
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
     </Container>
-  )
+  );
 }
